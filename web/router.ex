@@ -18,6 +18,7 @@ defmodule Quill.Router do
 
     resources "/wikis", WikiController
     resources "/pages", PageController
+    resources "/profiles", ProfileController
   end
 
   # Other scopes may use custom stacks.
