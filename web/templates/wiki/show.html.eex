@@ -1,0 +1,23 @@
+<h2>Show wiki</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @wiki.name %>
+  </li>
+
+  <li>
+    <strong>Slug:</strong>
+    <%= @wiki.slug %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @wiki.description %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: wiki_path(@conn, :edit, @wiki) %>
+<%= link "Back", to: wiki_path(@conn, :index) %>
