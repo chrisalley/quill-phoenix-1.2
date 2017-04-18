@@ -16,8 +16,8 @@ defmodule Quill.Router do
   scope "/", Quill do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
     resources "/wikis", WikiController
+    resources "/pages", PageController
   end
 
   # Other scopes may use custom stacks.
