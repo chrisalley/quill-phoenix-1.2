@@ -18,8 +18,9 @@ defmodule Quill.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", WikiController, :index
-    resources "/wikis", WikiController
-    resources "/pages", PageController
+    resources "/wikis", WikiController do
+      resources "/pages", PageController
+    end
     resources "/profiles", ProfileController
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete]

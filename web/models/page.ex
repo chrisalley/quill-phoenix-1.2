@@ -9,7 +9,7 @@ defmodule Quill.Page do
     timestamps()
   end
 
-  @required_fields ~w(name)
+  @required_fields ~w(name wiki_id)
   @optional_fields ~w(slug)
 
   @doc """

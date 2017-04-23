@@ -1,43 +1,53 @@
 defmodule Quill.PageController do
   use Quill.Web, :controller
 
+  alias Quill.Wiki
   alias Quill.Page
 
-  def index(conn, _params) do
-    pages = Repo.all(Page)
-    render(conn, "index.html", pages: pages)
+  def index(conn, %{"wiki_id" => wiki_id}) do
+    wiki = Repo.get!(Wiki, wiki_id)
+    pages = Repo.all(Page |> where(wiki_id: ^wiki_id))
+    render(conn, "index.html", wiki: wiki, pages: pages)
   end
 
-  def new(conn, _params) do
+  def new(conn, %{"wiki_id" => wiki_id}) do
+    wiki = Repo.get!(Wiki, wiki_id)
     changeset = Page.changeset(%Page{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", wiki: wiki, changeset: changeset)
   end
 
-  def create(conn, %{"page" => page_params}) do
+  def create(conn, %{"wiki_id" => wiki_id, "page" => page_params}) do
+    wiki = Repo.get!(Wiki, wiki_id)
+    page_params = put_in(page_params["wiki_id"], wiki_id)
     changeset = Page.changeset(%Page{}, page_params)
 
     case Repo.insert(changeset) do
       {:ok, _page} ->
         conn
         |> put_flash(:info, "Page created successfully.")
-        |> redirect(to: page_path(conn, :index))
+        |> redirect(to: wiki_page_path(conn, :index, wiki))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"wiki_id" => wiki_id, "id" => id}) do
+    wiki = Repo.get!(Wiki, wiki_id)
     page = Repo.get!(Page, id)
-    render(conn, "show.html", page: page)
+    render(conn, "show.html", wiki: wiki, page: page)
   end
 
-  def edit(conn, %{"id" => id}) do
+  def edit(conn, %{"wiki_id" => wiki_id, "id" => id}) do
+    wiki = Repo.get!(Wiki, wiki_id)
     page = Repo.get!(Page, id)
     changeset = Page.changeset(page)
-    render(conn, "edit.html", page: page, changeset: changeset)
+    render(conn, "edit.html", wiki: wiki, page: page, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "page" => page_params}) do
+  def update(
+    conn, %{"wiki_id" => wiki_id, "id" => id, "page" => page_params}
+  ) do
+    wiki = Repo.get!(Wiki, wiki_id)
     page = Repo.get!(Page, id)
     changeset = Page.changeset(page, page_params)
 
@@ -45,13 +55,14 @@ defmodule Quill.PageController do
       {:ok, page} ->
         conn
         |> put_flash(:info, "Page updated successfully.")
-        |> redirect(to: page_path(conn, :show, page))
+        |> redirect(to: wiki_page_path(conn, :show, wiki, page))
       {:error, changeset} ->
-        render(conn, "edit.html", page: page, changeset: changeset)
+        render(conn, "edit.html", wiki: wiki, page: page, changeset: changeset)
     end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"wiki_id" => wiki_id, "id" => id}) do
+    wiki = Repo.get!(Wiki, wiki_id)
     page = Repo.get!(Page, id)
 
     # Here we use delete! (with a bang) because we expect
@@ -60,6 +71,6 @@ defmodule Quill.PageController do
 
     conn
     |> put_flash(:info, "Page deleted successfully.")
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: wiki_page_path(conn, :index, wiki))
   end
 end
