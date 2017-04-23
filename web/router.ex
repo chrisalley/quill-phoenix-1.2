@@ -7,6 +7,7 @@ defmodule Quill.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Quill.AuthenticationPlug, repo: Quill.Repo
   end
 
   pipeline :api do
