@@ -50,7 +50,8 @@ defmodule Quill.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:comeonin, "~> 3.0.2"}
+      {:comeonin, "~> 3.0.2"},
+      {:ecto_autoslug_field, "~> 0.2"}
     ]
   end
 

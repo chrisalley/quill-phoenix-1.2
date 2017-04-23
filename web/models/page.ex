@@ -3,18 +3,22 @@ defmodule Quill.Page do
 
   schema "pages" do
     field :name, :string
-    field :slug, :string
+    field :slug, Quill.NameSlug.Type
     belongs_to :wiki, Quill.Wiki
 
     timestamps()
   end
+
+  @required_fields ~w(name)
+  @optional_fields ~w(slug)
 
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :slug])
-    |> validate_required([:name, :slug])
+    |> cast(params, @required_fields, @optional_fields)
+    |> Quill.NameSlug.maybe_generate_slug
+    |> Quill.NameSlug.unique_constraint
   end
 end
