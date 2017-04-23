@@ -1,8 +1,7 @@
 defmodule Quill.PageController do
   use Quill.Web, :controller
 
-  alias Quill.Wiki
-  alias Quill.Page
+  alias Quill.{Wiki, Page}
 
   def index(conn, %{"wiki_id" => wiki_id}) do
     wiki = Repo.get!(Wiki, wiki_id)

@@ -3,7 +3,7 @@ defmodule Quill.Page do
 
   schema "pages" do
     field :name, :string
-    field :slug, Quill.NameSlug.Type
+    field :slug, :string
     belongs_to :wiki, Quill.Wiki
 
     timestamps()
@@ -18,7 +18,15 @@ defmodule Quill.Page do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, @required_fields, @optional_fields)
-    |> Quill.NameSlug.maybe_generate_slug
-    |> Quill.NameSlug.unique_constraint
+    |> put_slug()
+  end
+
+  defp put_slug(changeset) do
+    case changeset do
+      %Ecto.Changeset{valid?: true, changes: %{name: name}} ->
+        put_change(changeset, :slug, Slugger.slugify_downcase(name))
+      _ ->
+        changeset
+    end
   end
 end

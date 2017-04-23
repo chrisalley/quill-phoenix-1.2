@@ -51,7 +51,7 @@ defmodule Quill.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:comeonin, "~> 3.0.2"},
-      {:ecto_autoslug_field, "~> 0.2"}
+      {:slugger, "~> 0.1.0"}
     ]
   end
 
