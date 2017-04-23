@@ -21,6 +21,7 @@ defmodule Quill.Router do
     resources "/pages", PageController
     resources "/profiles", ProfileController
     resources "/users", UserController
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
   # Other scopes may use custom stacks.
