@@ -1,22 +1,18 @@
-<h2>Show wiki</h2>
+<h2>Show Wiki</h2>
 
 <ul>
-
   <li>
     <strong>Name:</strong>
     <%= @wiki.name %>
   </li>
-
   <li>
     <strong>Slug:</strong>
     <%= @wiki.slug %>
   </li>
-
   <li>
     <strong>Description:</strong>
     <%= @wiki.description %>
   </li>
-
 </ul>
 
 <p><%= link "Wiki's Pages", to: wiki_page_path(@conn, :index, @wiki) %></p>

@@ -1,22 +1,18 @@
-<h2>Show page</h2>
+<h2>Show Page</h2>
 
 <ul>
-
   <li>
     <strong>Name:</strong>
     <%= @page.name %>
   </li>
-
   <li>
     <strong>Slug:</strong>
     <%= @page.slug %>
   </li>
-
   <li>
     <strong>Wiki:</strong>
     <%= @page.wiki_id %>
   </li>
-
 </ul>
 
 <%= link "Edit", to: wiki_page_path(@conn, :edit, @wiki, @page) %>

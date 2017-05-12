@@ -1,4 +1,4 @@
-<h2>Listing wikis</h2>
+<h2>Listing Wikis</h2>
 
 <table class="table">
   <thead>
@@ -6,24 +6,32 @@
       <th>Name</th>
       <th>Slug</th>
       <th>Description</th>
-
       <th></th>
     </tr>
   </thead>
   <tbody>
-<%= for wiki <- @wikis do %>
-    <tr>
-      <td><%= link wiki.name, to: wiki_path(@conn, :show, wiki) %></td>
-      <td><%= wiki.slug %></td>
-      <td><%= wiki.description %></td>
-
-      <td class="text-right">
-        <%= link "Edit", to: wiki_path(@conn, :edit, wiki), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: wiki_path(@conn, :delete, wiki), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
+    <%= for wiki <- @wikis do %>
+        <tr>
+          <td><%= link wiki.name, to: wiki_path(@conn, :show, wiki) %></td>
+          <td><%= wiki.slug %></td>
+          <td><%= wiki.description %></td>
+          <td class="text-right">
+            <%= link(
+              "Edit",
+              to: wiki_path(@conn, :edit, wiki),
+              class: "btn btn-default btn-xs"
+            ) %>
+            <%= link(
+              "Delete",
+              to: wiki_path(@conn, :delete, wiki),
+              method: :delete,
+              data: [confirm: "Are you sure?"],
+              class: "btn btn-danger btn-xs"
+            ) %>
+          </td>
+        </tr>
+    <% end %>
   </tbody>
 </table>
 
-<%= link "New wiki", to: wiki_path(@conn, :new) %>
+<%= link "New Wiki", to: wiki_path(@conn, :new) %>

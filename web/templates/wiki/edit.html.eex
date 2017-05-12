@@ -1,4 +1,4 @@
-<h2>Edit wiki</h2>
+<h2>Edit Wiki</h2>
 
 <%= render "form.html", changeset: @changeset,
                         action: wiki_path(@conn, :update, @wiki) %>

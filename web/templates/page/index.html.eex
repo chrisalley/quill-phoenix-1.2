@@ -1,4 +1,4 @@
-<h2>Listing pages</h2>
+<h2>Listing Pages</h2>
 
 <table class="table">
   <thead>
@@ -6,27 +6,35 @@
       <th>Name</th>
       <th>Slug</th>
       <th>Wiki</th>
-
       <th></th>
     </tr>
   </thead>
   <tbody>
-<%= for page <- @pages do %>
-    <tr>
-      <td>
-        <%= link page.name, to: wiki_page_path(@conn, :show, @wiki, page) %>
-      </td>
-      <td><%= page.slug %></td>
-      <td><%= page.wiki_id %></td>
-
-      <td class="text-right">
-        <%= link "Edit", to: wiki_page_path(@conn, :edit, @wiki, page), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: wiki_page_path(@conn, :delete, @wiki, page), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
+    <%= for page <- @pages do %>
+        <tr>
+          <td>
+            <%= link page.name, to: wiki_page_path(@conn, :show, @wiki, page) %>
+          </td>
+          <td><%= page.slug %></td>
+          <td><%= page.wiki_id %></td>
+          <td class="text-right">
+            <%= link(
+              "Edit",
+              to: wiki_page_path(@conn, :edit, @wiki, page),
+              class: "btn btn-default btn-xs"
+            ) %>
+            <%= link(
+              "Delete",
+              to: wiki_page_path(@conn, :delete, @wiki, page),
+              method: :delete,
+              data: [confirm: "Are you sure?"],
+              class: "btn btn-danger btn-xs"
+            ) %>
+          </td>
+        </tr>
+    <% end %>
   </tbody>
 </table>
 
-<%= link "New page", to: wiki_page_path(@conn, :new, @wiki) %>
-<%= link "Wiki Home", to: wiki_path(@conn, :show, @wiki) %>
+<%= link "New Page", to: wiki_page_path(@conn, :new, @wiki) %>
+<%= link "Back to Wiki", to: wiki_path(@conn, :show, @wiki) %>

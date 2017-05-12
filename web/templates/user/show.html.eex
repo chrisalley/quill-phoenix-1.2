@@ -1,22 +1,18 @@
-<h2>Show user</h2>
+<h2>Show User</h2>
 
 <ul>
-
   <li>
     <strong>Email:</strong>
     <%= @user.email %>
   </li>
-
   <li>
     <strong>Encrypted password:</strong>
     <%= @user.encrypted_password %>
   </li>
-
   <li>
     <strong>Profile:</strong>
     <%= @user.profile_id %>
   </li>
-
 </ul>
 
 <%= link "Edit", to: user_path(@conn, :edit, @user) %>

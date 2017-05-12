@@ -1,7 +1,6 @@
-<h2>Show profile</h2>
+<h2>Show Profile</h2>
 
 <ul>
-
   <li>
     <strong>Name:</strong>
     <%= @profile.name %>
@@ -11,7 +10,6 @@
     <strong>Email:</strong>
     <%= @profile.email %>
   </li>
-
 </ul>
 
 <%= link "Edit", to: profile_path(@conn, :edit, @profile) %>
