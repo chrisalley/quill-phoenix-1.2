@@ -29,3 +29,4 @@
 </table>
 
 <%= link "New page", to: wiki_page_path(@conn, :new, @wiki) %>
+<%= link "Wiki Home", to: wiki_path(@conn, :show, @wiki) %>

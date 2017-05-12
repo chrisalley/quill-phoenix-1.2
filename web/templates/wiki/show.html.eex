@@ -19,5 +19,7 @@
 
 </ul>
 
+<p><%= link "Wiki's Pages", to: wiki_page_path(@conn, :index, @wiki) %></p>
+
 <%= link "Edit", to: wiki_path(@conn, :edit, @wiki) %>
 <%= link "Back", to: wiki_path(@conn, :index) %>
