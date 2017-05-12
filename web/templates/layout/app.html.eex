@@ -14,7 +14,7 @@
   <body>
     <div class="container">
       <header class="header">
-        <h1>Quill</h1>
+        <h1><%= link "Quill", to: wiki_path(@conn, :index) %></h1>
         <ol class="breadcrumb text-right">
           <%= if @current_user do %>
             <li>Logged in as <%= @current_user.email %></li>
