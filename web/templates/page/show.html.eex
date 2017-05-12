@@ -1,19 +1,21 @@
-<h2>Show Page</h2>
+<h2><%= @page.name %></h2>
 
-<ul>
-  <li>
-    <strong>Name:</strong>
-    <%= @page.name %>
-  </li>
-  <li>
-    <strong>Slug:</strong>
-    <%= @page.slug %>
-  </li>
-  <li>
-    <strong>Wiki:</strong>
-    <%= @page.wiki_id %>
-  </li>
-</ul>
+<%= link(
+  "Edit",
+  to: wiki_page_path(@conn, :edit, @wiki, @page),
+  class: "btn btn-default"
+) %>
+<%= link(
+  "Delete",
+  to: wiki_page_path(@conn, :delete, @wiki, @page),
+  method: :delete,
+  data: [confirm: "Are you sure?"],
+  class: "btn btn-danger"
+) %>
 
-<%= link "Edit", to: wiki_page_path(@conn, :edit, @wiki, @page) %>
-<%= link "Back", to: wiki_page_path(@conn, :index, @wiki) %>
+<ol class="breadcrumb">
+  <li><%= link "Home", to: wiki_path(@conn, :index) %></li>
+  <li><%= link @wiki.name, to: wiki_path(@conn, :show, @wiki) %></li>
+  <li><%= link "Pages", to: wiki_page_path(@conn, :index, @wiki) %></li>
+  <li class="active"><%= @page.name %></li>
+</ol>

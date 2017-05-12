@@ -6,4 +6,7 @@
   action: wiki_path(@conn, :update, @wiki)
 ) %>
 
-<%= link "Back", to: wiki_path(@conn, :index) %>
+<ol class="breadcrumb">
+  <li><%= link "Home", to: wiki_path(@conn, :index) %></li>
+  <li class="active">Edit Wiki</li>
+</ol>

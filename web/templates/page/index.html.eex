@@ -1,11 +1,15 @@
-<h2>Listing Pages</h2>
+<h2>Pages for <%= @wiki.name %></h2>
+
+<%= link(
+  "New Page",
+  to: wiki_page_path(@conn, :new, @wiki),
+  class: "btn btn-default"
+) %>
 
 <table class="table">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Slug</th>
-      <th>Wiki</th>
       <th></th>
     </tr>
   </thead>
@@ -15,8 +19,6 @@
           <td>
             <%= link page.name, to: wiki_page_path(@conn, :show, @wiki, page) %>
           </td>
-          <td><%= page.slug %></td>
-          <td><%= page.wiki_id %></td>
           <td class="text-right">
             <%= link(
               "Edit",
@@ -36,5 +38,8 @@
   </tbody>
 </table>
 
-<%= link "New Page", to: wiki_page_path(@conn, :new, @wiki) %>
-<%= link "Back to Wiki", to: wiki_path(@conn, :show, @wiki) %>
+<ol class="breadcrumb">
+  <li><%= link "Home", to: wiki_path(@conn, :index) %></li>
+  <li><%= link @wiki.name, to: wiki_path(@conn, :show, @wiki) %></li>
+  <li class="active">Pages</li>
+</ol>

@@ -6,4 +6,9 @@
   action: wiki_page_path(@conn, :create, @wiki)
 ) %>
 
-<%= link "Back", to: wiki_page_path(@conn, :index, @wiki) %>
+<ol class="breadcrumb">
+  <li><%= link "Home", to: wiki_path(@conn, :index) %></li>
+  <li><%= link @wiki.name, to: wiki_path(@conn, :show, @wiki) %></li>
+  <li><%= link "Pages", to: wiki_page_path(@conn, :index, @wiki) %></li>
+  <li class="active">New Page</li>
+</ol>
