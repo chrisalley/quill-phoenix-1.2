@@ -11,25 +11,25 @@
   </thead>
   <tbody>
     <%= for wiki <- @wikis do %>
-        <tr>
-          <td><%= link wiki.name, to: wiki_path(@conn, :show, wiki) %></td>
-          <td><%= wiki.slug %></td>
-          <td><%= wiki.description %></td>
-          <td class="text-right">
-            <%= link(
-              "Edit",
-              to: wiki_path(@conn, :edit, wiki),
-              class: "btn btn-default btn-xs"
-            ) %>
-            <%= link(
-              "Delete",
-              to: wiki_path(@conn, :delete, wiki),
-              method: :delete,
-              data: [confirm: "Are you sure?"],
-              class: "btn btn-danger btn-xs"
-            ) %>
-          </td>
-        </tr>
+      <tr>
+        <td><%= link wiki.name, to: wiki_path(@conn, :show, wiki) %></td>
+        <td><%= wiki.slug %></td>
+        <td><%= wiki.description %></td>
+        <td class="text-right">
+          <%= link(
+            "Edit",
+            to: wiki_path(@conn, :edit, wiki),
+            class: "btn btn-default btn-xs"
+          ) %>
+          <%= link(
+            "Delete",
+            to: wiki_path(@conn, :delete, wiki),
+            method: :delete,
+            data: [confirm: "Are you sure?"],
+            class: "btn btn-danger btn-xs"
+          ) %>
+        </td>
+      </tr>
     <% end %>
   </tbody>
 </table>

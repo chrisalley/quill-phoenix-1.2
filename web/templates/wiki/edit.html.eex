@@ -1,6 +1,9 @@
 <h2>Edit Wiki</h2>
 
-<%= render "form.html", changeset: @changeset,
-                        action: wiki_path(@conn, :update, @wiki) %>
+<%= render(
+  "form.html",
+  changeset: @changeset,
+  action: wiki_path(@conn, :update, @wiki)
+) %>
 
 <%= link "Back", to: wiki_path(@conn, :index) %>
