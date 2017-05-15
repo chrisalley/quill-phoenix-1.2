@@ -15,25 +15,25 @@
   </thead>
   <tbody>
     <%= for page <- @pages do %>
-        <tr>
-          <td>
-            <%= link page.name, to: wiki_page_path(@conn, :show, @wiki, page) %>
-          </td>
-          <td class="text-right">
-            <%= link(
-              "Edit",
-              to: wiki_page_path(@conn, :edit, @wiki, page),
-              class: "btn btn-default btn-xs"
-            ) %>
-            <%= link(
-              "Delete",
-              to: wiki_page_path(@conn, :delete, @wiki, page),
-              method: :delete,
-              data: [confirm: "Are you sure?"],
-              class: "btn btn-danger btn-xs"
-            ) %>
-          </td>
-        </tr>
+      <tr>
+        <td>
+          <%= link page.name, to: wiki_page_path(@conn, :show, @wiki, page) %>
+        </td>
+        <td class="text-right">
+          <%= link(
+            "Edit",
+            to: wiki_page_path(@conn, :edit, @wiki, page),
+            class: "btn btn-default btn-xs"
+          ) %>
+          <%= link(
+            "Delete",
+            to: wiki_page_path(@conn, :delete, @wiki, page),
+            method: :delete,
+            data: [confirm: "Are you sure?"],
+            class: "btn btn-danger btn-xs"
+          ) %>
+        </td>
+      </tr>
     <% end %>
   </tbody>
 </table>
